@@ -12,14 +12,19 @@ class SomeClass {
 
 // Example of struct
 struct Resolution {
-    let width: CGFloat
-    let height: CGFloat
+    var width: CGFloat = 0
+    var height: CGFloat = 0
 }
 
 // Example of class
 class VideoMode {
-    var resolution: Resolution(width: 1280, height: 720)
-    var frameRate: CGFloat
+    var resolution: Resolution
+    var frameRate: CGFloat = 0.0
+    
+    init(resolution: Resolution, frameRate: CGFloat) {
+        self.resolution = resolution
+        self.frameRate = frameRate
+    }
 }
 
 // Creating some resolutions, they can't change his property values because all of them are constants
@@ -28,16 +33,15 @@ let qvga = Resolution(width: 320, height: 240)
 let hd720p = Resolution(width: 1920, height: 1080)
 let hd1080p = Resolution(width: 1920, height: 1080)
 
-// Creating a list of resolutions
-let resolutions = [vga, qvga, hd720p, hd1080p]
-print(resolutions)
-
 // Creating a VideoMode, using one of our resolution struct created recently
 let highVideoMode = VideoMode(resolution: vga, frameRate: 30)
-print(highVideoMode)
+print("Resolution: W: \(highVideoMode.resolution.width), H: \(highVideoMode.resolution.height)")
+print("Frame rate: \(highVideoMode.frameRate)")
+
+print("-----------------------------------------")
 
 // Changing varible values of our recenly instance class (highVideoMode)
 highVideoMode.frameRate = 120
-highVideoModel.resolution = hd1080p
-print("Resolution: \(highVideoMode.resolution)")
+highVideoMode.resolution = hd1080p
+print("Resolution: W: \(highVideoMode.resolution.width), H: \(highVideoMode.resolution.height)")
 print("Frame rate: \(highVideoMode.frameRate)")

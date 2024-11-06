@@ -18,7 +18,7 @@ struct Resolution {
 
 // Example of class
 class VideoMode {
-    var resolution: Resolution
+    var resolution: Resolution = Resolution()
     var frameRate: CGFloat = 0.0
     
     init(resolution: Resolution, frameRate: CGFloat) {
@@ -45,3 +45,25 @@ highVideoMode.frameRate = 120
 highVideoMode.resolution = hd1080p
 print("Resolution: W: \(highVideoMode.resolution.width), H: \(highVideoMode.resolution.height)")
 print("Frame rate: \(highVideoMode.frameRate)")
+
+print("-----------------------------------------")
+
+// Copy the reference of highVideoMode instancied class
+var cinema = highVideoMode
+cinema.frameRate = 240
+print("Frame rate (Cinema): \(cinema.frameRate)")
+print("Frame rate (highVideoMode): \(highVideoMode.frameRate)")
+// The value of frameRate of highVideoMode has been changed too, because, cinema variable it's a reference of highVideoMode
+// With Struct this would be different, because, the struct doesn't share his reference, it's a copy like enum:
+
+enum CompassPoint {
+    case north, south, east, west
+}
+
+var currentDirection = CompassPoint.north
+var oldDirecton = currentDirection
+currentDirection = .south
+// We would have a different values, because enum works like a copy, as structs too, totally different to classes
+print("Old direction: \(oldDirecton)")
+print("Current direction: \(currentDirection)")
+
